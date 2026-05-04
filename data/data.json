@@ -1,0 +1,11 @@
+{
+  "informativos": [
+    {
+      "id": "1",
+      "titulo": "Bem-vindo ao Minicurso",
+      "categoria": "Informativo",
+      "resumo": "Este é um exemplo de informativo auditado pela IA.",
+      "relevancia": "Média"
+    }
+  ]
+}

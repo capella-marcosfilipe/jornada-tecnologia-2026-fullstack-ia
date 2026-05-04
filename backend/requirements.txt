@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+python-dotenv
+pydantic
+pydantic-settings
+langgraph
+langchain-groq
+
+# Força a instalação da versão CPU do PyTorch
+torch --index-url https://download.pytorch.org/whl/cpu
+
+transformers
+pillow
