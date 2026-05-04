@@ -1,4 +1,4 @@
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 from pathlib import Path
 
 
@@ -23,9 +23,8 @@ class Settings(BaseSettings):
     APP_NAME: str = "Mural Inteligente UNICAP"
     GROQ_API_KEY: str = ""
     DATA_PATH: Path = Path(__file__).parent.parent.parent / "data" / "data.json"
-    MODEL_NAME: str = "blip-image-captioning-base"
-
-    class Config:
-        env_file = ".env"
+    MODEL_NAME: str = "Salesforce/blip-image-captioning-base"
+    
+    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
 settings = Settings()

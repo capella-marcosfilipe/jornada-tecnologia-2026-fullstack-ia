@@ -29,5 +29,5 @@ class ImageProcessor:
         raw_image = Image.open(image_path).convert("RGB")
 
         inputs = processor(raw_image, return_tensors="pt")
-        out = model.generate(**inputs)
+        out = model.generate(**inputs, max_new_tokens=50)
         return processor.decode(out[0], skip_special_tokens=True)
