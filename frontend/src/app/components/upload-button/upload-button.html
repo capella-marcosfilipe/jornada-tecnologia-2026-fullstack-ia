@@ -1,0 +1,22 @@
+<div class="upload-screen">
+  @if (imagePreview()) {
+    <div class="preview-container">
+      <img [src]="imagePreview()" alt="Preview do Mural">
+      <p>Processando imagem...</p>
+    </div>
+  } @else {
+    <div class="hero-section">
+      <span class="material-icons main-icon">visibility</span>
+      <h2>Auditoria de Murais</h2>
+      <p>Capture um informativo para catalogação automática.</p>
+    </div>
+  }
+
+  <div class="fab-container">
+    <input type="file" #camInput (change)="onFileSelected($event)" accept="image/*" capture="environment" hidden>
+    <button class="fab-btn" (click)="camInput.click()">
+      <span class="material-icons">add_a_photo</span>
+      Capturar
+    </button>
+  </div>
+</div>
