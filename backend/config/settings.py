@@ -23,6 +23,7 @@ class Settings(BaseSettings):
     APP_NAME: str = "Mural Inteligente UNICAP"
     GROQ_API_KEY: str = ""
     DATA_PATH: Path = Path(__file__).parent.parent.parent / "data" / "data.json"
+    UPLOAD_DIR: Path = Path(__file__).parent.parent.parent / "data" / "uploads"
     MODEL_NAME: str = "Salesforce/blip-image-captioning-base"
     
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")

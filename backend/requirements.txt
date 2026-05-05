@@ -5,6 +5,7 @@ pydantic
 pydantic-settings
 langgraph
 langchain-groq
+python-multipart
 
 # Força a instalação da versão CPU do PyTorch
 torch --index-url https://download.pytorch.org/whl/cpu
