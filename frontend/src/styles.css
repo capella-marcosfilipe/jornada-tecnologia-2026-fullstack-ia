@@ -1,39 +1,290 @@
-body {
-  background-color: #0C0E0D;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+:root {
+  /* Design System - Tech Dark Theme */
+  --bg-dark: #0a0b0a;
+  --bg-card: #141615;
+  --header-bg: #76220B;
+  --text-light: #e0e6e2;
+  --text-muted: #8b9690;
+
+  /* Cores de Ação (Vibe Tech/Cyber) */
+  --primary-glow: ##0A2463 ;
+  --primary: #76220B;
+  --primary-hover: #2a0d05;
+
+  /* Status */
+  --status-alta: #e85d4a;
+  --status-media: #e8b84a;
+  --status-baixa: #4a90e8;
+}
+
+html, body {
   margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================
+   1. APP SHELL (Header, Main, Footer)
+   ========================================= */
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.tech-header {
+  background-color: var(--header-bg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  padding: 1rem 2rem;
   display: flex;
   justify-content: center;
-  font-family: 'Inter', sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-app-root {
-  width: 100%;
-  max-width: 480px;
-  min-height: 100vh;
-  background-color: #141714;
-  position: relative;
-  box-shadow: 0 0 50px rgba(0,0,0,0.5);
-  padding: 20px;
-  padding-bottom: 100px;
-}
-
-.info-card {
-  background: #1A1D1A;
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 12px;
+.header-content {
   display: flex;
-  gap: 15px;
+  flex-direction: column;
   align-items: center;
-  border: 1px solid rgba(255,255,255,0.05);
+  gap: 0.5rem;
 }
 
-.status-dot {
-  width: 12px;
-  height: 12px;
+.logo {
+  height: 45px;
+  object-fit: contain;
+}
+
+.header-badge {
+  background: var(--bg-dark);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem 1.5rem;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.tech-footer {
+  background-color: #070807;
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.footer-glow {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 2px;
+  background: var(--primary);
+  box-shadow: 0 0 15px var(--primary-glow);
+}
+
+/* =========================================
+   2 e 3. BOTAO UPLOAD & DASHBOARD
+   ========================================= */
+.dashboard-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* CTA Upload */
+.action-section {
+  display: flex;
+  justify-content: center;
+}
+
+.tech-btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  background-color: var(--primary);
+  color: #ffffff;
+  border: none;
+  padding: 1.2rem;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 25px var(--primary-glow);
+}
+
+.tech-btn-primary:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px var(--primary-glow);
+}
+
+.tech-btn-primary:active {
+  transform: translateY(1px);
+}
+
+/* Dashboard Header */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 0.75rem;
+}
+
+.title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.title-group h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.tech-icon {
+  color: var(--primary);
+}
+
+.live-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.pulse {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: var(--primary);
   border-radius: 50%;
-  flex-shrink: 0;
+  box-shadow: 0 0 8px var(--primary);
+  animation: pulse-animation 2s infinite;
 }
 
-.Alta { background-color: #E8734A; } /* Coral */
-.Media { background-color: #E8B84A; } /* Amber */
+@keyframes pulse-animation {
+  0% { transform: scale(0.95); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.5; }
+  100% { transform: scale(0.95); opacity: 1; }
+}
+
+/* Cards do Mural */
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.tech-card {
+  background: var(--bg-card);
+  border-radius: 10px;
+  padding: 1.25rem;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.03);
+  transition: transform 0.2s, background 0.2s;
+}
+
+.tech-card:hover {
+  background: #191b1a;
+  transform: translateX(4px);
+}
+
+.card-glow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+}
+
+.card-glow.Alta { background-color: var(--status-alta); box-shadow: 2px 0 10px rgba(232, 93, 74, 0.4); }
+.card-glow.Media { background-color: var(--status-media); box-shadow: 2px 0 10px rgba(232, 184, 74, 0.4); }
+.card-glow.Baixa { background-color: var(--status-baixa); } /* Defina se houver 'Baixa' */
+
+.card-content {
+  padding-left: 0.5rem;
+}
+
+.card-meta {
+  margin-bottom: 0.5rem;
+}
+
+.categoria-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #919191;
+  background: rgba(246, 187, 187, 0.1);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.card-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.card-summary {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+/* Estado Vazio */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: rgba(255,255,255,0.02);
+  border-radius: 10px;
+  border: 1px dashed rgba(255,255,255,0.1);
+}
+
+.empty-icon {
+  font-size: 3rem;
+  color: rgba(255,255,255,0.2);
+  margin-bottom: 1rem;
+}
+
+.empty-state p {
+  margin: 0;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.empty-sub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
