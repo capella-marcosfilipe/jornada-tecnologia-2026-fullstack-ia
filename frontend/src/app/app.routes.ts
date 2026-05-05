@@ -1,14 +1,10 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
+import { DashboardComponent } from './components/dashboard/dashboard';
 import { UploadComponent } from './components/upload-button/upload-button';
 
-@Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterModule, UploadComponent],
-  templateUrl: './app.html',
-  styleUrl: './app.css',
-})
-export class App {
-  // Lógica do componente principal
-}
+export const routes: Routes = [
+  // Redireciona a raiz direto para o dashboard
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'upload', component: UploadComponent },
+];
