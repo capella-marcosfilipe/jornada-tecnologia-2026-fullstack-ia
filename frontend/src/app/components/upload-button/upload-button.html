@@ -1,22 +1,40 @@
-<div class="upload-screen">
+<div class="upload-wrapper">
+  <!-- ESTADO 2: PROCESSANDO A IMAGEM -->
   @if (imagePreview()) {
-    <div class="preview-container">
-      <img [src]="imagePreview()" alt="Preview do Mural">
-      <p>Processando imagem...</p>
-    </div>
-  } @else {
-    <div class="hero-section">
-      <span class="material-icons main-icon">visibility</span>
-      <h2>Auditoria de Murais</h2>
-      <p>Capture um informativo para catalogação automática.</p>
+    <div class="processing-state">
+      <div class="image-frame">
+        <img [src]="imagePreview()" alt="Preview do Informativo" class="scanned-image">
+        <!-- Div responsável pelo feixe de luz animado -->
+        <div class="scanner-line"></div>
+      </div>
+      <div class="loading-info">
+        <span class="material-icons rotating">autorenew</span>
+        <h3>Extraindo dados com IA...</h3>
+        <p>O LangGraph está processando a imagem.</p>
+      </div>
     </div>
   }
+  <!-- ESTADO 1: AGUARDANDO CAPTURA -->
+  @else {
+    <div class="capture-state">
+      <div class="icon-glow-wrapper">
+        <span class="material-icons massive-icon">document_scanner</span>
+      </div>
 
-  <div class="fab-container">
-    <input type="file" #camInput (change)="onFileSelected($event)" accept="image/*" capture="environment" hidden>
-    <button class="fab-btn" (click)="camInput.click()">
-      <span class="material-icons">add_a_photo</span>
-      Capturar
-    </button>
-  </div>
+      <div class="text-content">
+        <h2>Colecionador de Murais</h2>
+        <p>Alinhe o mural informativo e tire uma foto nítida.</p>
+      </div>
+
+      <div class="action-buttons">
+        <input type="file" #camInput (change)="onFileSelected($event)" accept="image/*" capture="environment" hidden>
+
+        <!-- Reutilizamos o botão primário do Design System -->
+        <button class="tech-btn-primary" (click)="camInput.click()">
+          <span class="material-icons">photo_camera</span>
+          <span>Selecionar Foto</span>
+        </button>
+      </div>
+    </div>
+  }
 </div>

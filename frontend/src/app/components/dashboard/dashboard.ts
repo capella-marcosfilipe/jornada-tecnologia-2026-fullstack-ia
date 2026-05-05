@@ -1,20 +1,21 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// import { AnaliseService } from '../../services/analise.service'; // A ser implementado com o T3
+import { RouterModule } from '@angular/router';
+import { AnaliseService } from '../../services/analise';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
 export class DashboardComponent implements OnInit {
-  // Injetando o serviço (Padrão moderno Angular 21)
-  // public service = inject(AnaliseService); // A ser implementado com o T3
+  // Tornamos público para o HTML conseguir ler os dados
+  public service = inject(AnaliseService);
 
   ngOnInit() {
-    // Aqui chamaremos o método que você vai criar com os alunos
-    // this.service.buscarInformativos(); // A ser implementado com o T3
+    // Ao abrir a tela, busca o data.json via FastAPI
+    this.service.buscarTodos();
   }
 }
