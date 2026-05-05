@@ -1,13 +1,20 @@
-<div class="mobile-container">
-  <header>
-    <img src="assets/logo-cia.png" alt="Centro de IA da FASA" class="logo" />
+<div class="app-layout">
+  <!-- 1. Header com fundo claro -->
+  <header class="tech-header">
+    <div class="header-content">
+      <img src="assets/logo-fasa.png" alt="Centro de IA FASA" class="logo" />
+      <span class="header-badge">Centro de IA</span>
+    </div>
   </header>
 
-  <main>
-    <!-- O componente de upload que você já entrega pronto -->
-    <!-- Upload button component removed to avoid unknown element error until it is imported -->
-
-    <!-- Onde os alunos vão construir a lista -->
+  <!-- Container dinâmico das rotas -->
+  <main class="main-content">
     <router-outlet></router-outlet>
   </main>
+
+  <!-- 4. Footer -->
+  <footer class="tech-footer">
+    <p>Jornada de Tecnologia UNICAP 2026</p>
+    <div class="footer-glow"></div>
+  </footer>
 </div>
