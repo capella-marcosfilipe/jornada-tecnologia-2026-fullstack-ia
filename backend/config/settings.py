@@ -26,6 +26,9 @@ class Settings(BaseSettings):
     UPLOAD_DIR: Path = Path(__file__).parent.parent.parent / "data" / "uploads"
     MODEL_NAME: str = "Salesforce/blip-image-captioning-base"
     
-    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
+    model_config = SettingsConfigDict(
+        env_file=Path(__file__).parent.parent / ".env",
+        env_file_encoding="utf-8",
+    )
 
 settings = Settings()

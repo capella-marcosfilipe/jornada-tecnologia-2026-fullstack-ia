@@ -5,7 +5,9 @@ from fastapi import APIRouter, UploadFile, File
 from backend.schemas.informativo import InformativoSchema
 from backend.config.settings import settings
 from backend.services.storage_service import StorageService
+from backend.graph.builder import build_graph
 
+app_graph = build_graph()
 router = APIRouter()
 
 @router.get("/informativos")
@@ -23,17 +25,18 @@ async def analisar_mural(file: UploadFile = File(...)):
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
 
-    # 2. Mock de resposta (Aqui o T1 entrega o bastão para o T2)
-    # No próximo passo (T2), este dicionário virá do LangGraph
-    novo_informativo = {
-        "id": str(uuid.uuid4()),
-        "titulo": f"Análise Pendente: {file.filename}",
-        "categoria": "Processando",
-        "resumo": "A inteligência artificial processará esta imagem na Parte 2.",
-        "relevancia": "Media"
-    }
+    # Executa o Grafo Agêntico
+    inputs = {"image_path": file_path, "history": []}
+    
+    # .invoke é síncrono, mas pode ser adaptado para async se necessário,
+    # daí usaríamos await app_graph.ainvoke(inputs)
+    result = app_graph.invoke(inputs)
+    
+    # Extrai o dado estruturado gerado pela LLM
+    novo_info = result["structured_data"]
+    novo_info["id"] = str(uuid.uuid4())
 
     # 3. Persistir no JSON
-    StorageService.save_data(novo_informativo)
+    StorageService.save_data(novo_info)
     
-    return novo_informativo
+    return novo_info
