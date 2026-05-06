@@ -72,3 +72,6 @@ npm start
 ```
 
 O estado compartilhado entre os nós (`AgentState`) carrega: `image_path`, `raw_description`, `is_relevant`, `structured_data` e `history`.
+
+API Key = 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
+  
