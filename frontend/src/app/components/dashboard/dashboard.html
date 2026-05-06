@@ -1,24 +1,42 @@
-<div class="dashboard-scroll">
-  <div class="status-header">
-    <span class="badge">Centro de IA FASA</span>
-    <h2>Mural Recente</h2>
-  </div>
+<div class="dashboard-wrapper">
 
-  <!-- <div class="list-container">
-    @for (item of informativos(); track item.id) {
-      <div class="info-card">
-        <div class="indicator" [class]="item.relevancia"></div>
-        <div class="card-body">
-          <small>{{ item.categoria }}</small>
-          <h3>{{ item.titulo }}</h3>
-          <p>{{ item.resumo }}</p>
+  <!-- 2. Botão de Upload (CTA Principal) -->
+  <section class="action-section">
+    <button class="tech-btn-primary" routerLink="/upload">
+      <span class="material-icons">document_scanner</span>
+      <span>Auditar Novo Informativo</span>
+    </button>
+  </section>
+
+  <!-- 3. Dashboard -->
+  <section class="dashboard-section">
+    <div class="section-header">
+      <div class="title-group">
+        <span class="material-icons tech-icon">dashboard</span>
+        <h2>Mural Recente</h2>
+      </div>
+      <span class="live-badge"><span class="pulse"></span> Sincronizado</span>
+    </div>
+
+    <div class="cards-grid">
+      @for (item of service.informativos(); track item.id) {
+        <article class="tech-card">
+          <div class="card-glow" [class]="item.relevancia"></div>
+          <div class="card-content">
+            <header class="card-meta">
+              <span class="categoria-tag">{{ item.categoria }}</span>
+            </header>
+            <h3 class="card-title">{{ item.titulo }}</h3>
+            <p class="card-summary">{{ item.resumo }}</p>
+          </div>
+        </article>
+      } @empty {
+        <div class="empty-state">
+          <span class="material-icons empty-icon">auto_awesome</span>
+          <p>O sistema está aguardando dados.</p>
+          <span class="empty-sub">Inicie uma auditoria para popular o painel.</span>
         </div>
-      </div>
-    } @empty {
-      <div class="empty-state">
-        <p>O mural está vazio.</p>
-        <span>Use a câmera para começar.</span>
-      </div>
-    }
-  </div> -->
+      }
+    </div>
+  </section>
 </div>
